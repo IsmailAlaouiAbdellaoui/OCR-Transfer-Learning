@@ -7,6 +7,12 @@ The purpose here is to try to recognize the uppercase letters inside an image.
 Here is a prototype of the images used : 
 ![alt tag](https://github.com/IsmailAlaouiAbdellaoui/OCR-Transfer-Learning/blob/master/FIZEBGPMKUPNVFBR.png)
 
+There are images like this in the "Training", "Testing", and "Validation" folders.
+-10000 training images.
+-2250 testing images.
+-250 validation images.
+
+
 To do :
 Use the following models :
 -Densenet
