@@ -8,15 +8,15 @@ Here is a prototype of the images used :
 ![alt tag](https://github.com/IsmailAlaouiAbdellaoui/OCR-Transfer-Learning/blob/master/FIZEBGPMKUPNVFBR.png)
 
 There are images like this in the "Training", "Testing", and "Validation" folders.
--10000 training images.
--2250 testing images.
--250 validation images.
+*10000 training images.
+*2250 testing images.
+*250 validation images.
 
 
 To do :
 Use the following models :
--Densenet
--Resenet
--Mobilenet
+*Densenet
+*Resenet
+*Mobilenet
 
 Instructions for starting the program are coming soon.
