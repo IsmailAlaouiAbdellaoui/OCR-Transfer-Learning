@@ -16,7 +16,7 @@ from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers.normalization import BatchNormalization
 from keras.layers.advanced_activations import LeakyReLU
-import generate_sets as gen
+#import generate_sets as gen
 from keras import backend as K
 
 def letter_to_digit(letters):
@@ -85,7 +85,76 @@ def ctc_lambda_func(args):
 #
 #model.fit(x=train_x, y=train_y, batch_size=50, epochs=20, verbose=1, validation_data=(test_x,test_y))
 
+# import random
+# from PIL import Image
+# from PIL import ImageDraw, ImageFont
+# import string
 
+def paint_text(text,w,h,rotate=False, ud=False, multi_fonts=False):
+   fnt = ImageFont.truetype('arial.ttf', 20)
+   img = Image.new('L', (w, h), color = random.randint(185,185))
+   d = ImageDraw.Draw(img)
+ #   name = ''.join(random.choices(string.ascii_uppercase, k=16))
+   name = ''.join(text)
+   d.text((5,0),name ,font=fnt,fill=(90))
+   list1 = list(img.getdata())
+   length = len(list1)    
+   list2 = np.random.normal(0, 25, length)
+   list3 = list1+list2
+   train_x = np.asarray(list3)
+   return train_x
+
+#a = paint_text('A GAME',h = 60, w = 270)
+#a = a.reshape(1,60,270)
+#print(a.shape)
+   
+def insert_space_random(s):
+    r = random.randint(1, len(s)-1)
+    return s[:r] + ' ' + s[r:]
+
+def generate_data_file():
+    print("generating the file ...")
+    file = open('data.txt','w') 
+    i = 0
+    while(i<85000):
+        length = random.randint(4,16)
+        s = ''.join(random.choices(string.ascii_uppercase, k=length))
+        s = insert_space_random(s)
+        file.write(s+'\n')
+        i= i+1
+    print("done !")
+    file.close()
+#generate_data_file()
+import re
+import codecs
+tmp_string_list = []
+max_string_len = 17
+data_file='data.txt'
+num_words = 16000
+regex = r'^[A-Z ]+$'
+def is_valid_str(in_str):
+    search = re.compile(regex, re.UNICODE).search
+    return bool(search(in_str))
+with codecs.open(data_file, mode='r', encoding='utf-8') as f:
+            lines = f.readlines()
+            for line in lines:
+                if len(tmp_string_list) == num_words:
+                    break
+                columns = line.split()
+                word = columns[0] + ' ' + columns[1]
+#                print(word)
+                if is_valid_str(word):# and (max_string_len == -1 or max_string_len is None or len(word) <= max_string_len):
+                    tmp_string_list.append(word)
+#        if len(tmp_string_list) != num_words:
+#            print("length of tmp_string_list is : "+str(len(tmp_string_list)))
+#            print("num_words is : "+str(num_words))
+#            raise IOError('Could not pull enough words from supplied monogram and bigram files. ')
+#        # interlace to mix up the easy and hard words
+#        string_list[::2] = tmp_string_list[:self.num_words // 2]
+#        string_list[1::2] = tmp_string_list[self.num_words // 2:]
+                    
+
+print("length of tmp_string_list is : "+str(len(tmp_string_list)))        
 
 
 
