@@ -126,6 +126,6 @@ def generate_validate_y():
 #valid_y= generate_validate_y()
 #predictions = model.predict(valid_x)
 #i=0
-while(i<len(valid_x)):
-    print("Real value : "+str(valid_y[i])+" ,  Prediction : "+ str(predictions[i]))
-    i = i+1
+#while(i<len(valid_x)):
+#    print("Real value : "+str(valid_y[i])+" ,  Prediction : "+ str(predictions[i]))
+#    i = i+1
