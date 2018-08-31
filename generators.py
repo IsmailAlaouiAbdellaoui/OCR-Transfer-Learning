@@ -89,6 +89,7 @@ def ctc_lambda_func(args):
 # from PIL import Image
 # from PIL import ImageDraw, ImageFont
 # import string
+import matplotlib.pyplot as plt
 
 def paint_text(text,w,h,rotate=False, ud=False, multi_fonts=False):
    fnt = ImageFont.truetype('arial.ttf', 20)
@@ -104,10 +105,13 @@ def paint_text(text,w,h,rotate=False, ud=False, multi_fonts=False):
    train_x = np.asarray(list3)
    return train_x
 
-#a = paint_text('A GAME',h = 60, w = 270)
-#a = a.reshape(1,60,270)
-#print(a.shape)
-   
+h = 50
+w = 272
+a = paint_text('Ismail',h = h, w = w)
+print(a.shape)
+b = a.reshape((h, w))
+plt.imshow(b)
+plt.show()
 def insert_space_random(s):
     r = random.randint(1, len(s)-1)
     return s[:r] + ' ' + s[r:]
@@ -116,8 +120,15 @@ def generate_data_file():
     print("generating the file ...")
     file = open('data.txt','w') 
     i = 0
-    while(i<85000):
-        length = random.randint(4,16)
+    indices = [3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+#    all_lengths = random.choices(indices,cum_weights=)
+#    while(i<16000):
+#        s = ''.join(random.choices(string.ascii_uppercase, k=3))
+#        s = insert_space_random(s)
+#        file.write(s+'\n')
+#        i= i+1
+    while(i<800000):
+        length = np.random.randint(3,16)
         s = ''.join(random.choices(string.ascii_uppercase, k=length))
         s = insert_space_random(s)
         file.write(s+'\n')
@@ -128,23 +139,34 @@ def generate_data_file():
 import re
 import codecs
 tmp_string_list = []
-max_string_len = 17
+max_string_len = 4
 data_file='data.txt'
-num_words = 16000
+num_words = 60000
 regex = r'^[A-Z ]+$'
 def is_valid_str(in_str):
     search = re.compile(regex, re.UNICODE).search
     return bool(search(in_str))
 with codecs.open(data_file, mode='r', encoding='utf-8') as f:
             lines = f.readlines()
+#            print(len(lines))
+#            print(lines[0])
+#            columns = lines[0].split()
+#            word = columns
+#            print(columns[0])
             for line in lines:
-                if len(tmp_string_list) == num_words:
-                    break
+                
+#                columns = line.split()
+        
+#                if len(tmp_string_list) == num_words:
+#                    break
                 columns = line.split()
                 word = columns[0] + ' ' + columns[1]
-#                print(word)
-                if is_valid_str(word):# and (max_string_len == -1 or max_string_len is None or len(word) <= max_string_len):
+                if len(word) <= max_string_len:
                     tmp_string_list.append(word)
+                    
+##                print(word)
+#                if is_valid_str(word) and (max_string_len == -1 or max_string_len is None or len(word) <= max_string_len):
+#                    tmp_string_list.append(word)
 #        if len(tmp_string_list) != num_words:
 #            print("length of tmp_string_list is : "+str(len(tmp_string_list)))
 #            print("num_words is : "+str(num_words))
