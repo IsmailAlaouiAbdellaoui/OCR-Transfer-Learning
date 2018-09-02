@@ -136,47 +136,47 @@ def generate_data_file():
     print("done !")
     file.close()
 #generate_data_file()
-import re
-import codecs
-tmp_string_list = []
-max_string_len = 4
-data_file='data.txt'
-num_words = 60000
-regex = r'^[A-Z ]+$'
-def is_valid_str(in_str):
-    search = re.compile(regex, re.UNICODE).search
-    return bool(search(in_str))
-with codecs.open(data_file, mode='r', encoding='utf-8') as f:
-            lines = f.readlines()
-#            print(len(lines))
-#            print(lines[0])
-#            columns = lines[0].split()
-#            word = columns
-#            print(columns[0])
-            for line in lines:
-                
+#import re
+#import codecs
+#tmp_string_list = []
+#max_string_len = 4
+#data_file='data.txt'
+#num_words = 60000
+#regex = r'^[A-Z ]+$'
+#def is_valid_str(in_str):
+#    search = re.compile(regex, re.UNICODE).search
+#    return bool(search(in_str))
+#with codecs.open(data_file, mode='r', encoding='utf-8') as f:
+#            lines = f.readlines()
+##            print(len(lines))
+##            print(lines[0])
+##            columns = lines[0].split()
+##            word = columns
+##            print(columns[0])
+#            for line in lines:
+#                
+##                columns = line.split()
+#        
+##                if len(tmp_string_list) == num_words:
+##                    break
 #                columns = line.split()
-        
-#                if len(tmp_string_list) == num_words:
-#                    break
-                columns = line.split()
-                word = columns[0] + ' ' + columns[1]
-                if len(word) <= max_string_len:
-                    tmp_string_list.append(word)
-                    
-##                print(word)
-#                if is_valid_str(word) and (max_string_len == -1 or max_string_len is None or len(word) <= max_string_len):
+#                word = columns[0] + ' ' + columns[1]
+#                if len(word) <= max_string_len:
 #                    tmp_string_list.append(word)
-#        if len(tmp_string_list) != num_words:
-#            print("length of tmp_string_list is : "+str(len(tmp_string_list)))
-#            print("num_words is : "+str(num_words))
-#            raise IOError('Could not pull enough words from supplied monogram and bigram files. ')
-#        # interlace to mix up the easy and hard words
-#        string_list[::2] = tmp_string_list[:self.num_words // 2]
-#        string_list[1::2] = tmp_string_list[self.num_words // 2:]
-                    
+#                    
+###                print(word)
+##                if is_valid_str(word) and (max_string_len == -1 or max_string_len is None or len(word) <= max_string_len):
+##                    tmp_string_list.append(word)
+##        if len(tmp_string_list) != num_words:
+##            print("length of tmp_string_list is : "+str(len(tmp_string_list)))
+##            print("num_words is : "+str(num_words))
+##            raise IOError('Could not pull enough words from supplied monogram and bigram files. ')
+##        # interlace to mix up the easy and hard words
+##        string_list[::2] = tmp_string_list[:self.num_words // 2]
+##        string_list[1::2] = tmp_string_list[self.num_words // 2:]
+#                    
 
-print("length of tmp_string_list is : "+str(len(tmp_string_list)))        
+#print("length of tmp_string_list is : "+str(len(tmp_string_list)))        
 
 
 
